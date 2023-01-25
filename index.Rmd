@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "Piccirilli Biol 381"
 author: "David Piccirilli"
 date: "`r Sys.Date()`"
 output: html_document
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## so happy that is worked!!!! first git hub web page
+## 
 
 first 
 
@@ -19,3 +19,9 @@ second
 - third
 
   * fourth
+  
+```{r}
+3+65
+```
+  
+  
