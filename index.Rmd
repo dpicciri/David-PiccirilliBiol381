@@ -23,5 +23,7 @@ second
 ```{r}
 3+65
 ```
-  
-  
+
+
+![cool squirtle](https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/02/squirtle-gang.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5)
+
