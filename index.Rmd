@@ -9,4 +9,5 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[Homework #3](https://github.com/dpicciri/PiccirilliBiol381/blob/e8ed6ce8395425f659785063946a521a64e3d6a7/Homework%20%233.Rmd)
+[Homework #3](Homework--3.html)
+
