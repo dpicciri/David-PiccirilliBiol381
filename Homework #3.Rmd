@@ -1,0 +1,102 @@
+---
+title: 'Homework #3'
+author: "David Piccirilli"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### Problem 1
+First String,Second,1.22,3.4
+
+Second,More Text,1.555555,2.2220
+
+Third,x,3,124
+```
+Look: (\s{2,})
+Replace: ,
+```
+### Problem 2
+Ballif Bryan (University of Vermont)
+
+Ellison Aaron (Harvard Forest)
+
+Record Sydne (Bryn Mawr)
+```
+Look:(\w+),\s*(\w+),\s(.*)
+Replace:\1 \2 (\3)
+```
+
+### Problem 3
+
+0001 Georgia Horseshoe.mp3
+
+0002 Billy In The Lowground.mp3
+
+0003 Winder Slide.mp3
+
+0004 Walking Cane.mp3
+
+```
+Look: (\.\w+\d)\s
+Replace: \1\n
+```
+
+### Problem 4
+Georgia Horseshoe_0001.mp3
+
+Billy In The Lowground_0002.mp3
+
+Winder Slide_0003.mp3
+
+Walking Cane_0004.mp3
+
+```
+Look: (\d{4})\s(.*)(\.\w+\d)
+Replace: \2_\1\3
+```
+
+### Problem 5
+C_pennsylvanicus,44
+
+C_herculeanus,3
+
+M_punctiventris,4
+
+L_neoniger,55
+
+```
+Look: (\w)\w+,(\w+),\w+.\d,(\d+)
+Replace: \1_\2,\3
+```
+
+### Problem 6
+C_penn,44
+
+C_herc,3
+
+M_punc,4
+
+L_neon,55
+
+```
+Look: (\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
+Replace: \1_\2,\3
+```
+
+### Problem 7
+
+Campen, 44, 10.2
+
+Camher, 3, 10.5
+
+Myrpun, 4, 12.2
+
+Lasneo, 55, 3.3
+
+```
+Look: (\w{3})\w+,(\w{3})\w+,(\d+.\d+),(\d+)
+Replace: \1\2, \4, \3
+```
