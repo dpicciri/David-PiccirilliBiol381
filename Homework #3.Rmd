@@ -15,7 +15,7 @@ Second,More Text,1.555555,2.2220
 
 Third,x,3,124
 ```
-Look: (\s{2,})
+Find: (\s{2,})
 Replace: ,
 ```
 ### Problem 2
@@ -25,7 +25,7 @@ Ellison Aaron (Harvard Forest)
 
 Record Sydne (Bryn Mawr)
 ```
-Look:(\w+),\s*(\w+),\s(.*)
+Find:(\w+),\s*(\w+),\s(.*)
 Replace:\1 \2 (\3)
 ```
 
@@ -40,7 +40,7 @@ Replace:\1 \2 (\3)
 0004 Walking Cane.mp3
 
 ```
-Look: (\.\w+\d)\s
+Find: (\.\w+\d)\s
 Replace: \1\n
 ```
 
@@ -54,7 +54,7 @@ Winder Slide_0003.mp3
 Walking Cane_0004.mp3
 
 ```
-Look: (\d{4})\s(.*)(\.\w+\d)
+Find: (\d{4})\s(.*)(\.\w+\d)
 Replace: \2_\1\3
 ```
 
@@ -68,7 +68,7 @@ M_punctiventris,4
 L_neoniger,55
 
 ```
-Look: (\w)\w+,(\w+),\w+.\d,(\d+)
+Find: (\w)\w+,(\w+),\w+.\d,(\d+)
 Replace: \1_\2,\3
 ```
 
@@ -82,7 +82,7 @@ M_punc,4
 L_neon,55
 
 ```
-Look: (\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
+Find: (\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
 Replace: \1_\2,\3
 ```
 
@@ -97,6 +97,6 @@ Myrpun, 4, 12.2
 Lasneo, 55, 3.3
 
 ```
-Look: (\w{3})\w+,(\w{3})\w+,(\d+.\d+),(\d+)
+Find: (\w{3})\w+,(\w{3})\w+,(\d+.\d+),(\d+)
 Replace: \1\2, \4, \3
 ```
