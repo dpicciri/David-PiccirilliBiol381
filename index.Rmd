@@ -9,21 +9,4 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-## 
-
-first 
-
-second
-
-- third
-
-  * fourth
-  
-```{r}
-3+65
-```
-
-
-![cool squirtle](https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/02/squirtle-gang.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5)
-
+[Homework #3](https://github.com/dpicciri/PiccirilliBiol381/blob/e8ed6ce8395425f659785063946a521a64e3d6a7/Homework%20%233.Rmd)
