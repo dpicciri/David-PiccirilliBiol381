@@ -11,3 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Homework #3](Homework--3.html)
 
+[Homework #4](Homework-4.html)
