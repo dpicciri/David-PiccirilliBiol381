@@ -33,4 +33,22 @@ theta<- atan(y/x)
 print(theta)
 #### output:1.282925
 
+queue<-c("sheep","fox","owl","ant")
+queue<-append(queue,"serpent")
+queue<-queue[-1]
+queue<-append(queue,"donkey",0)
+queue<-queue[-5]  
+queue<-queue[-3] 
+queue<-append(queue,"aphid",2)
 
+
+print(queue)
+#### output:"donkey" "fox" "aphid"  "ant"
+which(queue=="aphid")
+##### aphid is in the 3rd spot
+
+
+v<- (1:100)
+which(v%%2!=0 & v%%3!=0 & v%%7!=0)
+1  5 11 13 17 19 23 25 29 31 37 41 43 47 53 55
+59 61 65 67 71 73 79 83 85 89 95 97

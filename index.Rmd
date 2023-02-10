@@ -2,7 +2,10 @@
 title: "Piccirilli Biol 381"
 author: "David Piccirilli"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  prettydoc::html_pretty:
+theme: cayman
+highlight: vignette
 ---
 
 ```{r setup, include=FALSE}
