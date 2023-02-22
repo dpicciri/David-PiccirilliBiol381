@@ -2,7 +2,9 @@
 title: "Homework5"
 author: "David Piccirilli"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document: 
+    highlight: textmate
 ---
 
 # Problem 1
