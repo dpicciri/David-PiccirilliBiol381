@@ -6,7 +6,7 @@ output: html_document
 ---
 
 # Problem 1
-```
+```{r,eval=FALSE}
 x<-3:10
 n_dims<-sample(x, 1,replace=TRUE,prob=NULL) 
 print(n_dims)
@@ -27,7 +27,7 @@ typeof(eigen_type$values)
 typeof(eigen_type$vectors)
 ```
 # Problem 2
-```
+```{r,eval=FALSE}
 my_matrix<-matrix(runif(16),nrow=4,ncol=4,byrow=TRUE)
 print(my_matrix)
 
@@ -49,7 +49,7 @@ typeof(newvec)# now the vector is a character
 str(newvec)
 ```
 # Problem 3
-```
+```{r,eval=FALSE}
 my_unis<-runif(26,0,10)
 my_letters<-sample(LETTERS,26)
 dataframe<-data.frame(my_unis,my_letters,stringsAsFactors=FALSE)

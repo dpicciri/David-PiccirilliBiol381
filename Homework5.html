@@ -11,7 +11,7 @@
 
 <meta name="author" content="David Piccirilli" />
 
-<meta name="date" content="2023-02-15" />
+<meta name="date" content="2023-02-22" />
 
 <title>Homework5</title>
 
@@ -352,14 +352,14 @@ display: none;
 
 <h1 class="title toc-ignore">Homework5</h1>
 <h4 class="author">David Piccirilli</h4>
-<h4 class="date">2023-02-15</h4>
+<h4 class="date">2023-02-22</h4>
 
 </div>
 
 
 <div id="problem-1" class="section level1">
 <h1>Problem 1</h1>
-<pre><code>x&lt;-3:10
+<pre class="r"><code>x&lt;-3:10
 n_dims&lt;-sample(x, 1,replace=TRUE,prob=NULL) 
 print(n_dims)
 
@@ -380,7 +380,7 @@ typeof(eigen_type$vectors)</code></pre>
 </div>
 <div id="problem-2" class="section level1">
 <h1>Problem 2</h1>
-<pre><code>my_matrix&lt;-matrix(runif(16),nrow=4,ncol=4,byrow=TRUE)
+<pre class="r"><code>my_matrix&lt;-matrix(runif(16),nrow=4,ncol=4,byrow=TRUE)
 print(my_matrix)
 
 my_logical&lt;-runif(100)&lt;0.5
@@ -402,7 +402,7 @@ str(newvec)</code></pre>
 </div>
 <div id="problem-3" class="section level1">
 <h1>Problem 3</h1>
-<pre><code>my_unis&lt;-runif(26,0,10)
+<pre class="r"><code>my_unis&lt;-runif(26,0,10)
 my_letters&lt;-sample(LETTERS,26)
 dataframe&lt;-data.frame(my_unis,my_letters,stringsAsFactors=FALSE)
 
