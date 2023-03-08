@@ -1,0 +1,165 @@
+---
+title: "Homework7"
+author: "David Piccirilli"
+date: "2023-03-08"
+output: 
+  html_document: 
+    highlight: textmate
+    theme: cerulean
+---
+
+# Simulating and fitting data distributions
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+```{r, message=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+```
+
+### Add Data vector
+
+```{r, eval= F,echo= F}
+z <- rnorm(n=3000,mean=0.2) # generate a random data vector with normal distribution
+z <- data.frame(1:3000,z) # adding ID numbers 1:3000 called "z"
+names(z) <- list("ID","Length") # add column names to data frame "z"
+z <- z[z$Length>0,] # subset positive values of Length
+str(z)# display z
+summary(z$Length)
+```
+
+## Sunflower Ovary data set
+
+```{r, echo= F}
+z<-read.csv("SunflowerOvary.csv")
+str(z)
+summary(z)
+```
+
+## Plot histogram of data
+
+```{r, echo=T}
+# histogram of z and Length
+p1 <- ggplot(data=z, aes(x=Length, y=..density..)) +
+  geom_histogram(color="black",fill="magenta",linewidth=0.2) 
+# x-axis is Length values, y-axis is probability density 
+print(p1)
+```
+
+## Add density curve
+
+```{r, echo=T}
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+```
+
+## Get maximum likelihood parameters for normal distribution
+
+```{r, echo = T}
+normPars <- fitdistr(z$Length,"normal")
+print(normPars)
+str(normPars)
+normPars$estimate["mean"]
+```
+
+## Plot normal probability density
+
+```{r echo=T, warning=FALSE}
+meanML <- normPars$estimate["mean"]# maximum likelihood for normal probability
+sdML <- normPars$estimate["sd"] 
+
+xval <- seq(0,max(z$Length),len=length(z$Length))
+# the x values are sequenced from the beginning of the data frame to the end of the data frame. length of one column.
+ stat <- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour="green4", n = length(z$Length), args = list(mean = meanML, sd = sdML))
+ p1 + stat
+ # using the maximum likelihood estimators to draw another curve of the normal distribution
+```
+
+## Plot exponential probability density
+
+```{r}
+expoPars <- fitdistr(z$Length,"exponential")
+rateML <- expoPars$estimate["rate"] #maximum likelihood for exponential probability
+
+stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue2", n = length(z$Length), args = list(rate=rateML))
+ p1 + stat + stat2
+ #continuous exponetial line that does not cross zero (always positive)
+```
+
+## Plot uniform probability density
+
+```{r}
+stat3 <- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour="darkviolet", n = length(z$Length), args = list(min=min(z$Length), max=max(z$Length)))
+ p1 + stat + stat2 + stat3
+ # does not account for the maximum probability 
+ #the line does not fit the data very well and shows teh data in not uniform 
+```
+
+## Plot gamma probability density
+
+```{r}
+gammaPars <- fitdistr(z$Length,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$Length), args = list(shape=shapeML, rate=rateML))
+ p1 + stat + stat2 + stat3 + stat4
+ # the gamma distribution is a combination of the normal and exponential distribution because the line follows the graph more closely and is the middle values between the lines.
+ #takes into account the shape and distribution of the data
+```
+
+## Plot beta probability density
+ 
+```{r}
+#the beta probability to based on the successes and fails
+#the values are only between 0 and 1
+pSpecial <- ggplot(data=z, aes(x=Length/(max(Length + 0.1)), y=..density..)) +
+  geom_histogram(color="black",fill="magenta",size=0.2) + 
+  xlim(c(0,1)) +
+  geom_density(size=0.75,linetype="dotted")
+#ploted with a dotted line
+betaPars <- fitdistr(x=z$Length/max(z$Length + 0.1),start=list(shape1=1,shape2=2),"beta")
+#the success/ the maximum value from the graph
+shape1ML <- betaPars$estimate["shape1"]
+shape2ML <- betaPars$estimate["shape2"]
+#takes the success and failures (shape1 +1 and shape2 +2)
+statSpecial <- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="cyan3", n = length(z$Length), args = list(shape1=shape1ML,shape2=shape2ML))
+pSpecial + statSpecial
+```
+
+## Problem 3
+
+```{r}
+# the best fit distribution is the beta probability distibution because the line best fits the data. The graph is not normal distribution and it is not an exponential distribution. 
+```
+
+## Problem 4
+
+```{r}
+NewBeta<-rbeta(1:77, shape1ML, shape2ML, ncp=0)
+d<- data.frame(1:77,NewBeta)
+names(d)<-list("ID", "myLength")
+str(d)
+summary(d$myLength)
+```
+
+## New Beta Plot
+
+```{r}
+#ploted with a dotted line
+betaPars <- fitdistr(x=z$Length/max(z$Length + 0.1),start=list(shape1=1,shape2=2),"beta")
+
+
+p1 <- ggplot(data=d, aes(x=myLength, y=..density..)) +
+  geom_histogram(color="black",fill="magenta",linewidth=0.2) 
+
+print(p1)
+
+betacurve <-stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour="cyan3", n = length(d$myLength), args = list(shape1=shape1ML,shape2=shape2ML))
+
+p1 + betacurve
+```
