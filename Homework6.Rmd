@@ -1,0 +1,86 @@
+---
+title: "Homework6"
+author: "David Piccirilli"
+date: "March 1, 2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(dplyr)
+library(tidyr)
+```
+
+## Problem 1
+```{r, message=F}
+data("iris")
+class(iris)
+#150 observations and 5 variables
+```
+
+## Problem 2
+```{r,echo=TRUE}
+iris1<-filter(iris, Species== c("virginica","versicolor") & Sepal.Length>6 & Sepal.Width>2.5)
+print(iris1)
+##28 rows and 5 columns
+#which is 28 observations and 5 variables
+```
+
+## Problem 3
+```{r,echo=T}
+iris2<-select(iris1, Species, Sepal.Length, Sepal.Width)
+print(iris2)
+#28 observations and 3 Variables
+```
+
+## Problem 4
+```{r, echo=T}
+iris3<- arrange(iris2, desc(Sepal.Length), by_group= T)
+#reordered values from high to low in from iris2
+head(iris3)
+#print the first 6 rows 
+```
+
+## Problem 5
+```{r echo=FALSE}
+iris4<- mutate(iris3, Sepal.Width, Sepal.Area=(Sepal.Length * Sepal.Width))
+print(iris4)
+# a new column was added with the name Sepal.Area. The numbers in the column are the length * width of each plant sepal. 
+# 28 observations and 5 variables
+```
+## Problem 6
+```{r, echo= T}
+iris5<-summarize(iris4, AVG.Sepal.Length=mean(Sepal.Length),
+AVG.Sepal.Width=mean(Sepal.Width), number=n())
+# 
+```
+## Problem 7
+```{r, echo= T}
+iris6<-summarize(iris4, AVG.Sepal.Length=mean(Sepal.Length),
+AVG.Sepal.Width=mean(Sepal.Width), .by=Species, number=n())
+```
+
+## Problem 8 
+```{r, echo= T}
+irisFinal<- iris%>%
+  filter(Species== c("virginica","versicolor") & Sepal.Length>6 & Sepal.Width>2.5) %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  arrange(desc(Sepal.Length), by_group= T) %>%
+  mutate(Sepal.Width, Sepal.Area=(Sepal.Length * Sepal.Width)) %>%
+  summarize(AVG.Sepal.Length=mean(Sepal.Length),
+AVG.Sepal.Width=mean(Sepal.Width), .by=Species, number=n())
+```
+
+## Problem 9
+```{r, echo=T}
+Longer.iris<-pivot_longer(iris, cols=Sepal.Length:Petal.Width, names_to="Measure" , values_to="Values")
+print(Longer.iris)
+```
+
+
+
