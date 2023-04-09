@@ -35,3 +35,4 @@ summary(aov(newdata$temperature~newdata$treatments))
 #as the sample becomes larger the test becomes more significant as a lower value each time the sample size is increased. 
 # even with a value of 2 the data is still significant. the test resulted in p-value= 0.0255.
 
+
