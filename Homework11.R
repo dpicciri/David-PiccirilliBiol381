@@ -1,0 +1,48 @@
+
+
+
+library(tidyverse)
+library(dplyr)
+library(sqldf)
+source("RegStats_fun.R")
+
+x<- read.csv("PSID7682.csv")
+# the data set is about the Panel Study of Income Dynamics.
+
+x<- arrange(x, year)
+
+# separate the single csv file in to 7 individual files with the same categoical data
+for(i in 1976:1982){
+  y<-x%>%
+    filter(year==i)
+  output<-paste(i)
+  write.csv(y,
+            file=output,
+            sep=",",
+            col.names = TRUE,
+            row.names= FALSE)
+}
+
+# put the year files to one column as the names
+year<- c("1976", "1977","1978", "1979", "1980", "1981", "1982")
+ID<- 1:7 # make an integer string (vector)
+
+# functions to make empty dataframe
+slope<- rep( NA, length(year))
+p_val<- rep(NA, length(year))
+r2<- rep(NA, length(year))
+
+stats_out<- data.frame(ID,year, slope,p_val, r2)
+
+#makes a table with the summary values displayed
+for(i in seq_along(year)){
+  data<- read.table(file=paste(year[i], sep=""),
+                    sep=",",
+                    header=TRUE)
+  d_clean<- data[complete.cases(data),]
+.<-reg_stats(d_clean)
+stats_out[i, 3:5]<- unlist(.)
+}
+
+
+
