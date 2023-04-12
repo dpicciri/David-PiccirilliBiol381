@@ -1,0 +1,38 @@
+---
+title: "Homework9"
+author: "David Piccirilli"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Homework 9
+# 29 March 2023
+```{r, message= FALSE}
+# ------------Library------------------
+library(tidyverse)
+library(dplyr)
+# ------------Functions------------------
+source("Homework9_Functions.R") 
+
+# ------------Global variables------------------
+morph_file<-"Morphometric_Analysis.csv"
+# read in the data set
+```
+
+```{r}
+# ------------Program Body------------------
+morph<- get_data(FileName=morph_file)
+# reading in the data set into the function
+clean_morph<-clean_data(var1=morph$Total_Body_Length, var2=morph$Right_Wing_Length)
+# take the NA's out of the data and keep the columns with data
+New_dataset<-random_data(clean_data=clean_morph,var1=var1, var2=var2, n=34)
+# form a new dataset with the data being randomized following trends in the original data
+morph_data<- plot_data(filename=New_dataset, xlab="Total Body Length", ylab="Right Wing Length")
+# plot the data 
+table<-summary_table(clean_data=New_dataset)
+# create a table with the summary values of mean, sd and range of the data
+```

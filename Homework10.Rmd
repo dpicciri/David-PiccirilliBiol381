@@ -1,7 +1,15 @@
-#Homework 10
-#DAP 
-# April 5, 2023
+---
+title: "Homework10"
+author: "David Piccirilli"
+date: "`r Sys.Date()`"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo= TRUE}
 d<-(c(0, 5,6 ,7, 8, 1, 3, 0, 0, 0, 9, 6, 4, 2, 3, 4, 5, 6, 7, 0, 0))
 counter<- 0 
 # find the number of zeros in the list numbers
@@ -27,7 +35,9 @@ return(d)
 }
 
 new_matrix(4,5)
+```
 
+```{r, echo=TRUE, message=FALSE}
 
 # ------------Question #3------------------
 library(tidyverse)
@@ -65,8 +75,9 @@ for (i in 1:100){
   
 }
 print(d_new)
+```
 
-
+```{r, echo=TRUE}
 ##### Graph Data ##### 
 library(ggplot2)
 ggplot(d_new, aes(x=mean_x))+ geom_histogram() 
@@ -75,3 +86,4 @@ ggplot(d_new, aes(x=mean_y))+ geom_histogram()
 # histogram of y mean
 ggplot(d_new, aes(x=mean_z))+ geom_histogram() 
 # histogram of z mean
+```
